@@ -7,7 +7,13 @@ import monsterTecg.Logics.DesignPatterns.Card;
  * @author Anthony Chaves
  */
 public class Stack {
-    private SimpleList list;
+    private LinkedList list;
+    /**
+     * Constructor de la clase
+     */
+    public Stack(){
+        list = new LinkedList();
+    }
     /**
      * Agrega un nuevo elemento a la pila
      * @param card Carta que se coloca en el top

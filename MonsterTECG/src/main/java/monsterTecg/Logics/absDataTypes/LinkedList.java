@@ -7,7 +7,7 @@ import monsterTecg.Logics.DesignPatterns.Card;
  * @author Anthony Chaves
  * Implementacion de una Lista simple enlazada cuyos objetos son de la clase Card
  */
-public class SimpleList {
+public class LinkedList {
     
     private Node head;
     private int largo;
@@ -15,7 +15,7 @@ public class SimpleList {
     /**
      * Constructor de la clase
      */
-    public SimpleList(){
+    public LinkedList(){
         this.head = null;
         this.largo = 0;
     }
