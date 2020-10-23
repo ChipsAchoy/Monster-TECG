@@ -56,9 +56,10 @@ public class CircularList {
      */
     public Card getByIndex(int index){
         
-        if (index >= this.largo){
+        if((this.largo == 0)||(index >= this.largo)){
             return null;
         }
+        
         else if(index == this.largo -1){
             return this.last.getData();
         }
@@ -81,10 +82,9 @@ public class CircularList {
      * @param index La posicion del nodo a eliminar
      */
     public void deleteByIndex(int index){
-        if (index >= this.largo){
+        if ((this.largo == 0)||(index >= this.largo)){
             System.out.println("Fuera de rango");
         }
-        
         else if (index == 0){
             this.last.setNext(this.last.getNext().getNext());
             this.last.getNext().setPrev(this.last);
