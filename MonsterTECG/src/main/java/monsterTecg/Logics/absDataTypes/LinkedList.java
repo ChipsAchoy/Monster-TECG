@@ -40,7 +40,7 @@ public class LinkedList {
     public void printL(){
         Node tmp = this.head;
         while (tmp != null){
-            System.out.print("<"+tmp+">");
+            System.out.print("<"+tmp.getData().getType()+">");
             tmp = tmp.getNext();
         }
         System.out.println();

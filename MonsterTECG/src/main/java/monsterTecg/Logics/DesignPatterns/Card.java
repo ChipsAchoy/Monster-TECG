@@ -29,13 +29,20 @@ public class Card {
     public Turn perform(){
 
         //if (this.type == "minion"){
-        return new AttackTurn(this.dmg, this.cost);
+        return new Turn(this.type, this.dmg, this.cost);
         //}
         /*
         else if (this.type == "freeze"){
             return new FreezeTurn(this.dmg, this.cost)
         }
         */
+    }
+    
+    public String getType(){
+        return this.type;
+    }
+    public int getDmg(){
+        return this.dmg;
     }
 
 }

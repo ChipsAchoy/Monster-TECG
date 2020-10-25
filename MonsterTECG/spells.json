@@ -1,0 +1,11 @@
+{
+    "spells":[
+        {"type":"freeze","damage":"0", "cost":"50"},
+        {"type":"heal","damage":"0", "cost":"40"},
+        {"type":"steal","damage":"0", "cost":"50"},
+        {"type":"electrocute","damage":"100", "cost":"60"},
+        {"type":"fireball","damage":"200", "cost":"30"},
+        {"type":"crazy","damage":"0", "cost":"40"}
+        
+    ]
+}

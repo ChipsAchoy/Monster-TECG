@@ -18,6 +18,10 @@ public class CircularList {
         this.last = null;
     }
     
+    public int getSize(){
+        return this.largo;
+    }
+    
     /**
      * Agrega un elemento al final de la lista
      * @param card Carta que se agregara a la mano del jugador
@@ -41,12 +45,13 @@ public class CircularList {
      * Muestra los elementos de la lista
      */
     public void printC(){
+        System.out.println();
         Node tmp = this.last.getNext();
         while (tmp != this.last){
-            System.out.print("<"+tmp+">");
+            System.out.print("<"+tmp.getData().getType()+">");
             tmp = tmp.getNext();
         }
-        System.out.println("<"+this.last+">");
+        System.out.println("<"+this.last.getData().getType()+">");
         System.out.println(this.largo);
     }
     /**

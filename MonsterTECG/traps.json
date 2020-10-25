@@ -1,0 +1,12 @@
+{
+    
+    "traps":[
+        {"type":"delete","damage":"0", "cost":"50"}, 
+        {"type":"manacounter","damage":"0", "cost":"30"},
+        {"type":"magic","damage":"0", "cost":"30"},
+        {"type":"bleed","damage":"100", "cost":"60"},
+        {"type":"breaker","damage":"0", "cost":"50"},
+        {"type":"nonmana","damage":"200", "cost":"0"}
+        
+    ]
+}
