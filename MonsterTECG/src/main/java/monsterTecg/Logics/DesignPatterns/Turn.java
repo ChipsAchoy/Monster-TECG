@@ -1,5 +1,10 @@
 package monsterTecg.Logics.DesignPatterns;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import monsterTecg.Logics.PlayerManager;
 
 /**
@@ -8,22 +13,37 @@ import monsterTecg.Logics.PlayerManager;
  */
 public class Turn {
     
-    private String type;
-    private int dmg;
-    private int cost;
+    private Card card;
     
-    public Turn(String type,int dmg, int cost){
-        this.type = type;
-        this.dmg = dmg;
-        this.cost = cost;
+    public Turn(Card card){
+        this.card = card;
     }
     
-    public void updateMana(){
-        PlayerManager.updateMana(this.cost);
-    }
     
-    public String generateJSON(){
-        return "Working on";
+    public void SendJSON(String ip, int port) throws JsonProcessingException{
+        /**
+         * https://www.baeldung.com/jackson-object-mapper-tutorial
+         * http://tutorials.jenkov.com/java-json/jackson-objectmapper.html
+         */
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(this.card);
+        System.out.println(json);
+        //Card card2 = objectMapper.readValue(json, Card.class);
+        //System.out.println(card2);
+        Socket socketOut = null;
+
+        try {
+            
+            socketOut = new Socket(ip, port);
+
+            ObjectOutputStream dataSend = new ObjectOutputStream(socketOut.getOutputStream());
+            objectMapper.writeValue((OutputStream)dataSend, this.card);
+            //dataSend.writeObject(pk);
+        }catch(Exception e){
+            
+        }
+        
     }
+   
     
 }

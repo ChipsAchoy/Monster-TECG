@@ -10,7 +10,7 @@ public class MinionFacade implements FacadePerformer{
 
     @Override
     public void makeChanges(int dmg) {
-        PlayerManager.updateHealth(dmg);
+        PlayerManager.getInstance().updateHealth(dmg);
         
     }
     

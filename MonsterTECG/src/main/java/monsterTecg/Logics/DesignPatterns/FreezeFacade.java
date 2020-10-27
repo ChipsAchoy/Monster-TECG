@@ -9,7 +9,7 @@ import monsterTecg.Logics.PlayerManager;
 public class FreezeFacade implements FacadePerformer{
     @Override
     public void makeChanges(int dmg) {
-        PlayerManager.setTurns(0);
+        PlayerManager.getInstance().setTurns(0);
     }
     
 }

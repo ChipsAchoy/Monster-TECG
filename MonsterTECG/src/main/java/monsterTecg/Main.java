@@ -14,7 +14,8 @@ import monsterTecg.Logics.absDataTypes.Stack;
  */
 public class Main {
     public static void main(String[] args){
-        PlayerManager.setDeck();
-        PlayerManager.setHand();
+        PlayerManager.getInstance(12347).setDeck();
+        PlayerManager.getInstance().setHand();
+        //PlayerManager.getInstance().playTurn();
     }
 }

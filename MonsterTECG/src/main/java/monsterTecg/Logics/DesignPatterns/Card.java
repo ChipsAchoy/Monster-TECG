@@ -10,6 +10,10 @@ public class Card {
     private int dmg;
     private int cost;
     
+    
+    public Card(){
+        
+    }
     /**
      * Constructor de la clase para cartas
      * @param type tipo de carta
@@ -17,6 +21,7 @@ public class Card {
      * @param cost coste de mana
      */
     public Card(String type, int dmg, int cost){
+        this();
         this.type = type;
         this.dmg = dmg;
         this.cost = cost;
@@ -26,23 +31,16 @@ public class Card {
      * Genera un reporte del turno
      * @return el turno efectuado
      */
-    public Turn perform(){
 
-        //if (this.type == "minion"){
-        return new Turn(this.type, this.dmg, this.cost);
-        //}
-        /*
-        else if (this.type == "freeze"){
-            return new FreezeTurn(this.dmg, this.cost)
-        }
-        */
-    }
     
     public String getType(){
         return this.type;
     }
     public int getDmg(){
         return this.dmg;
+    }
+    public int getCost(){
+        return this.cost;
     }
 
 }
