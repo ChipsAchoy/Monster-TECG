@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import monsterTecg.Interface.AppInterface;
 import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.TurnProcessor;
 
@@ -17,8 +18,10 @@ import monsterTecg.Logics.DesignPatterns.TurnProcessor;
 public class MessageReceiver implements Runnable{
     
     private int portIn;
+    private AppInterface frame;
     
-    public MessageReceiver(int portIn){
+    public MessageReceiver(int portIn, AppInterface frame){
+        this.frame = frame;
         this.portIn = portIn;
         
         Thread th = new Thread(this);
@@ -39,18 +42,26 @@ public class MessageReceiver implements Runnable{
                     Card response = json.readValue((InputStream)cardrec, Card.class);
                     TurnProcessor turn = new TurnProcessor(response);
                     turn.PerformFacade();
-                    PlayerManager.getInstance().playTurn(socketIn.getInetAddress().toString(), socketIn.getPort());
+                    SendTurn st = new SendTurn(this.frame,socketIn.getInetAddress().toString(), socketIn.getPort());
+                    frame.chat_space.append("Turno Rival: " + response.getType()+ "\n");
                 }   
-            }catch(Exception e){
+            /*}catch(BindException e){
                 this.portIn++;
+            */
+            }catch(BindException e){
+                this.portIn++;
+                System.out.println(e.getMessage());
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
             }
             finally{
                 if (socketIn != null){
                     try{
                         socketIn.close();
                     }
-                    catch (IOException e4){ // This exception detects if the socket didn't close,so it writes it in the .txt.
-                        
+                    catch (IOException e){ // This exception detects if the socket didn't close,so it writes it in the .txt.
+                        System.out.println(e.getMessage());
                     }
                 }
             }

@@ -1,5 +1,7 @@
 package monsterTecg.Logics;
 
+import javax.swing.ListSelectionModel;
+import monsterTecg.Interface.AppInterface;
 import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.DeckGenerator;
 import monsterTecg.Logics.DesignPatterns.Turn;
@@ -17,18 +19,42 @@ public class PlayerManager {
     private CircularList hand = new CircularList();
     private int health = 1000;
     private int availableTurns = 1;
-    private int sendPort;
+    private int inPort;
+    private AppInterface frame;
+    
+    public Card selected;
     
     private static PlayerManager instance = null;
     
-    private PlayerManager(int sendPort){
-        this.sendPort = sendPort;
-        MessageReceiver messages = new MessageReceiver(this.sendPort);
+    private PlayerManager(int inPort, AppInterface frame){
+        this.frame = frame;
+        this.inPort = inPort;
+        
+        MessageReceiver messages = new MessageReceiver(this.inPort, this.frame);
+        
+        GrabCard newone = new GrabCard(frame);
+
+        this.frame.boton2.addActionListener(newone);
+
+        SendTurn evento = new SendTurn(frame, "127.0.0.1", 12006);
+
+        this.frame.miboton.addActionListener(evento);
+
+
+        ListReact lr = new ListReact(frame);
+
+        this.frame.listaCards.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        this.frame.listaCards.addListSelectionListener(lr);
+        
+        
+        
+        
     }
     
-    public static PlayerManager getInstance(int sendPort){
+    public static PlayerManager getInstance(int inPort, AppInterface frame){
         if (instance == null){
-            instance = new PlayerManager(sendPort);
+            instance = new PlayerManager(inPort, frame);
         }
         return instance;
     }
@@ -61,10 +87,29 @@ public class PlayerManager {
         }
         this.deck.printS();
         this.hand.printC();
+        
+        this.frame.listaCards.setListData(PlayerManager.getInstance().getHandUpdate().toArray());
+    }
+    
+    public CircularList getHand(){
+        return this.hand;
+    }
+    
+    public CircularList getHandUpdate(){
+        this.hand.addLast(this.deck.pop());
+        return this.hand;
     }
     
     public void updateHealth(int dmgDone){
         this.health -= dmgDone;
+    }
+    
+    public int getTurns(){
+        return this.availableTurns;
+    }
+    
+    public int getMana(){
+        return this.mana;
     }
     
     public void gameOver(){
@@ -75,41 +120,5 @@ public class PlayerManager {
     public boolean alive(){
         return this.health > 0;
     }
-    
-    public void listener(){
-        //if received
-        //new TurnProcessor t
-        //t.PerformFacade(json)
-        //check if alive
-        //PlayerManager.playTurn
-        //else
-        //Player.Manager gameOver
-    }
-    
-    public void playTurn(String ipRival, int portRival){ //Listener de un boton
-        Card selected = new Card("minions", 250, 50);
-        if (!(this.availableTurns > 0)){
-            //thread del listener de la seleccion de la carta
-        } 
-        else if (this.mana - selected.getCost() >= 0){
-            Turn turn = new Turn(selected); //aca va la carta seleccionada
-            //this.unlockMoves
-            /*
-            if (selected.getType().equals("heal")){ //Se va a resumir en el OwnEffect
-                this.health += 150;
-            }
-            */
-            this.updateMana(selected.getCost());
-            try{
-                turn.SendJSON(ipRival, portRival);
-            }
-            catch (Exception e){
-                System.out.println(e);
-            }
-        }
-    
-    }
-    
-    
     
 }

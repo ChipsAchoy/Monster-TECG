@@ -1,9 +1,9 @@
 {
     "minions": [
-        {"type":"minion","damage":"50", "cost":"15"},
-        {"type":"minion","damage":"100", "cost":"15"},
-        {"type":"minion","damage":"200", "cost":"25"},
-        {"type":"minion","damage":"300", "cost":"30"}
+        {"type":"minion","damage":"50", "cost":"150"},
+        {"type":"minion","damage":"100", "cost":"150"},
+        {"type":"minion","damage":"200", "cost":"250"},
+        {"type":"minion","damage":"300", "cost":"300"}
         
     ]
     

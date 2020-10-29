@@ -1,5 +1,6 @@
 package monsterTecg;
 
+import monsterTecg.Interface.AppWindow;
 import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.Turn;
 import monsterTecg.Logics.PlayerManager;
@@ -14,8 +15,6 @@ import monsterTecg.Logics.absDataTypes.Stack;
  */
 public class Main {
     public static void main(String[] args){
-        PlayerManager.getInstance(12347).setDeck();
-        PlayerManager.getInstance().setHand();
-        //PlayerManager.getInstance().playTurn();
+        AppWindow window = new AppWindow();
     }
 }

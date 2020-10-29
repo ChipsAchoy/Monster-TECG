@@ -40,7 +40,7 @@ public class Turn {
             objectMapper.writeValue((OutputStream)dataSend, this.card);
             //dataSend.writeObject(pk);
         }catch(Exception e){
-            
+            System.out.println(e.getMessage());
         }
         
     }

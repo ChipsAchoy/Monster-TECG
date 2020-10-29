@@ -117,4 +117,18 @@ public class CircularList {
         }
     }
     
+    public Card[] toArray(){
+        Card[] array = new Card[this.largo];
+        Node tmp = this.last.getNext();
+        int counter = 0;
+        while (tmp != this.last){
+            array[counter] = tmp.getData();
+            tmp = tmp.getNext();
+            counter++;
+        }
+        array[counter] = this.last.getData();
+        System.out.println(array);
+        return array;
+    }
+    
 }
