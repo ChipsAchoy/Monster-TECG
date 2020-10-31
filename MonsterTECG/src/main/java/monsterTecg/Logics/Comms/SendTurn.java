@@ -1,4 +1,4 @@
-package monsterTecg.Logics;
+package monsterTecg.Logics.Comms;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.awt.event.ActionEvent;
@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import monsterTecg.Interface.AppInterface;
 import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.Turn;
+import monsterTecg.Logics.PlayerManager;
 
 /**
  *
@@ -30,29 +31,27 @@ public class SendTurn implements ActionListener{
         
         PlayerManager pm = PlayerManager.getInstance();
         Card selected = pm.selected;
-        if (!(pm.getTurns() > 0)){
-            //thread del listener de la seleccion de la carta
-            System.out.println("No hay mana suficiente");
-        } 
-        else if (pm.getMana() - selected.getCost() >= 0){
-            Turn turn = new Turn(selected); //aca va la carta seleccionada
-            //this.unlockMoves
-            /*
-            if (selected.getType().equals("heal")){ //Se va a resumir en el OwnEffect
-                this.health += 150;
+        if (pm.alive()){
+            if (pm.getMana() - selected.getCost() >= 0){
+                Turn turn = new Turn(selected); //aca va la carta seleccionada
+                //this.unlockMoves
+                /*
+                if (selected.getType().equals("heal")){ //Se va a resumir en el OwnEffect
+                    this.health += 150;
+                }
+                */
+                frame.chat_space.append("Turno jugado: " + selected.getType() + "\n");
+                pm.updateMana(selected.getCost());
+
+                try {
+                    turn.SendJSON(this.ipRival, this.portRival);
+                } catch (JsonProcessingException ex) {
+                    System.out.println(ex.getMessage());
+                }
             }
-            */
-            frame.chat_space.append("Turno jugado: " + selected.getType() + "\n");
-            pm.updateMana(selected.getCost());
-            try {
-                turn.SendJSON(this.ipRival, this.portRival);
-            } catch (JsonProcessingException ex) {
-                System.out.println(ex.getMessage());
+            else{
+                System.out.println("No hay mana suficiente");
             }
-        }
-        else{
-            System.out.println("No hay mana suficiente");
         }
     }
-    
 }

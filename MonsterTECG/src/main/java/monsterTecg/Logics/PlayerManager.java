@@ -1,5 +1,7 @@
 package monsterTecg.Logics;
 
+import monsterTecg.Logics.Comms.MessageReceiver;
+import monsterTecg.Logics.Comms.SendTurn;
 import javax.swing.ListSelectionModel;
 import monsterTecg.Interface.AppInterface;
 import monsterTecg.Logics.DesignPatterns.Card;
@@ -14,12 +16,13 @@ import monsterTecg.Logics.absDataTypes.Stack;
  */
 public class PlayerManager {
     
-    private int mana = 200;
+    private int mana = 500;
     private Stack deck;
     private CircularList hand = new CircularList();
     private int health = 1000;
     private int availableTurns = 1;
     private int inPort;
+    private boolean locked = true;
     private AppInterface frame;
     
     public Card selected;
@@ -28,18 +31,17 @@ public class PlayerManager {
     
     private PlayerManager(int inPort, AppInterface frame){
         this.frame = frame;
+        
         this.inPort = inPort;
         
-        MessageReceiver messages = new MessageReceiver(this.inPort, this.frame);
         
         GrabCard newone = new GrabCard(frame);
 
         this.frame.boton2.addActionListener(newone);
 
-        SendTurn evento = new SendTurn(frame, "127.0.0.1", 12006);
+        SendTurn evento = new SendTurn(frame, "127.0.0.1", 12002);
 
         this.frame.miboton.addActionListener(evento);
-
 
         ListReact lr = new ListReact(frame);
 
@@ -47,14 +49,14 @@ public class PlayerManager {
 
         this.frame.listaCards.addListSelectionListener(lr);
         
-        
-        
-        
     }
     
     public static PlayerManager getInstance(int inPort, AppInterface frame){
         if (instance == null){
+            
             instance = new PlayerManager(inPort, frame);
+            
+            MessageReceiver messages = new MessageReceiver(inPort, frame);
         }
         return instance;
     }
@@ -88,7 +90,7 @@ public class PlayerManager {
         this.deck.printS();
         this.hand.printC();
         
-        this.frame.listaCards.setListData(PlayerManager.getInstance().getHandUpdate().toArray());
+        this.frame.listaCards.setListData(this.hand.toArray());
     }
     
     public CircularList getHand(){

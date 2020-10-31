@@ -17,7 +17,8 @@ public class AppWindow extends JFrame {
 
         AppInterface interfaz = new AppInterface();
 
-        PlayerManager pm = PlayerManager.getInstance(12007, interfaz);
+        PlayerManager pm = PlayerManager.getInstance(12003, interfaz);
+        
         pm.setDeck();
         pm.setHand();
 

@@ -1,5 +1,8 @@
 package monsterTecg.Logics.DesignPatterns;
 
+import monsterTecg.Logics.DesignPatterns.Template.FreezeFacade;
+import monsterTecg.Logics.DesignPatterns.Template.FacadePerformer;
+import monsterTecg.Logics.DesignPatterns.Template.MinionFacade;
 import org.json.simple.parser.JSONParser;
 
 /**
@@ -22,14 +25,19 @@ public class TurnProcessor {
     }
     
     public void PerformFacade(){
-        this.readJSON();
+        //this.readJSON();
+        this.type = this.card.getType();
+        this.dmg = this.card.getDmg();
+        
         FacadePerformer facade = null;
-        if (this.type.equals("minion")){
+        if ((this.type.equals("minion"))||(this.type.equals("fireball"))){
             facade = new MinionFacade();
         }
         else if(this.type.equals("freeze")){
             facade = new FreezeFacade();
         }//Agregar los otros facades
+        
+        facade.showCard(this.card);
         facade.makeChanges(this.dmg);
     }
 }

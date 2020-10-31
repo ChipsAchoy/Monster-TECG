@@ -1,11 +1,19 @@
 {
     "spells":[
         {"type":"freeze","damage":"0", "cost":"500"},
+        {"type":"freeze","damage":"0", "cost":"500"},
+        {"type":"heal","damage":"0", "cost":"400"},
         {"type":"heal","damage":"0", "cost":"400"},
         {"type":"steal","damage":"0", "cost":"500"},
+        {"type":"steal","damage":"0", "cost":"500"},
+        {"type":"electrocute","damage":"100", "cost":"600"},
         {"type":"electrocute","damage":"100", "cost":"600"},
         {"type":"fireball","damage":"200", "cost":"300"},
+        {"type":"wind","damage":"0", "cost":"350"},
+        {"type":"wind","damage":"0", "cost":"350"},
+        {"type":"crazy","damage":"0", "cost":"400"},
         {"type":"crazy","damage":"0", "cost":"400"}
+        
         
     ]
 }

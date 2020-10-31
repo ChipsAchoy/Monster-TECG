@@ -1,15 +1,17 @@
-package monsterTecg.Logics.DesignPatterns;
+package monsterTecg.Logics.DesignPatterns.Template;
 
+import monsterTecg.Logics.DesignPatterns.Template.FacadePerformer;
 import monsterTecg.Logics.PlayerManager;
 
 /**
  *
  * @author Anthony Chaves
  */
-public class MinionFacade implements FacadePerformer{
+public class MinionFacade extends FacadePerformer{
 
     @Override
     public void makeChanges(int dmg) {
+        
         PlayerManager.getInstance().updateHealth(dmg);
         
     }

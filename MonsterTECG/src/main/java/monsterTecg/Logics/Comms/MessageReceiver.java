@@ -1,6 +1,8 @@
-package monsterTecg.Logics;
+package monsterTecg.Logics.Comms;
 
+import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -30,42 +32,40 @@ public class MessageReceiver implements Runnable{
     
     @Override
     public void run() {
-        while (true) { //Tries to connect to the first available port
+        //while (true) { //Tries to connect to the first available port
             Socket socketIn = null;
             try {
                 ServerSocket servidor = new ServerSocket(this.portIn);
                 System.out.println(this.portIn);
-                ObjectMapper json = new ObjectMapper();
+                ObjectMapper json = new ObjectMapper().configure(Feature.AUTO_CLOSE_SOURCE, false);
+                
                 while (true) { //Checks out if a message has been received
                     socketIn = servidor.accept();
-                    ObjectInputStream cardrec = new ObjectInputStream(socketIn.getInputStream());
-                    Card response = json.readValue((InputStream)cardrec, Card.class);
-                    TurnProcessor turn = new TurnProcessor(response);
-                    turn.PerformFacade();
-                    SendTurn st = new SendTurn(this.frame,socketIn.getInetAddress().toString(), socketIn.getPort());
+                    InputStream cardrec = new ObjectInputStream(socketIn.getInputStream());
+                    
+                    Card response = json.readValue(cardrec, Card.class);
+                    System.out.println(response.getType() + ","+response.getDmg());
+                    //TurnProcessor turn = new TurnProcessor(response);
+                    //turn.PerformFacade();
+                    //SendTurn st = new SendTurn(this.frame,socketIn.getInetAddress().toString(), socketIn.getPort());
                     frame.chat_space.append("Turno Rival: " + response.getType()+ "\n");
+                    //socketIn.close();
+                    
+                    //cardrec.skip(Long.MAX_VALUE);
+                    socketIn.close();
                 }   
             /*}catch(BindException e){
                 this.portIn++;
             */
             }catch(BindException e){
                 this.portIn++;
-                System.out.println(e.getMessage());
+                System.out.println(e);
             }
-            catch (Exception e){
-                System.out.println(e.getMessage());
+            catch (Exception e1){
+                System.out.println(e1);
             }
-            finally{
-                if (socketIn != null){
-                    try{
-                        socketIn.close();
-                    }
-                    catch (IOException e){ // This exception detects if the socket didn't close,so it writes it in the .txt.
-                        System.out.println(e.getMessage());
-                    }
-                }
-            }
-        }
+            
+        //}
     }
     
 }

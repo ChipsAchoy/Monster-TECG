@@ -2,11 +2,17 @@
     
     "traps":[
         {"type":"delete","damage":"0", "cost":"500"}, 
+        {"type":"delete","damage":"0", "cost":"500"}, 
+        {"type":"manacounter","damage":"0", "cost":"300"},
         {"type":"manacounter","damage":"0", "cost":"300"},
         {"type":"magic","damage":"0", "cost":"300"},
+        {"type":"magic","damage":"0", "cost":"300"},
+        {"type":"bleed","damage":"100", "cost":"600"},
         {"type":"bleed","damage":"100", "cost":"600"},
         {"type":"breaker","damage":"0", "cost":"500"},
-        {"type":"nonmana","damage":"200", "cost":"0"}
-        
+        {"type":"breaker","damage":"0", "cost":"500"},
+        {"type":"mix","damage":"0", "cost":"500"},
+        {"type":"mix","damage":"0", "cost":"500"},
+        {"type":"mix","damage":"0", "cost":"500"}
     ]
 }

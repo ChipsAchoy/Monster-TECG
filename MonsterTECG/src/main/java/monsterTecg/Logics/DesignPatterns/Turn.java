@@ -25,23 +25,38 @@ public class Turn {
          * https://www.baeldung.com/jackson-object-mapper-tutorial
          * http://tutorials.jenkov.com/java-json/jackson-objectmapper.html
          */
-        ObjectMapper objectMapper = new ObjectMapper();
-        String json = objectMapper.writeValueAsString(this.card);
-        System.out.println(json);
-        //Card card2 = objectMapper.readValue(json, Card.class);
-        //System.out.println(card2);
-        Socket socketOut = null;
-
-        try {
-            
-            socketOut = new Socket(ip, port);
-
-            ObjectOutputStream dataSend = new ObjectOutputStream(socketOut.getOutputStream());
-            objectMapper.writeValue((OutputStream)dataSend, this.card);
-            //dataSend.writeObject(pk);
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+        OwnEffect own = new OwnEffect(this.card.getType());
+        if (own.hasOwnEffect()){
+            own.Effect();
         }
+        
+        if (PlayerManager.getInstance().getTurns()>0){
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(this.card);
+            System.out.println(json);
+
+            //Card card2 = objectMapper.readValue(json, Card.class);
+            //System.out.println(card2);
+
+            Socket socketOut = null;
+            
+            try {
+
+                socketOut = new Socket(ip, port);
+                ObjectOutputStream dataSend = new ObjectOutputStream(socketOut.getOutputStream());
+                objectMapper.writeValue((OutputStream)dataSend, this.card);
+                
+                
+                //dataSend.writeObject(pk);
+            }catch(Exception e){
+
+                System.out.println(e.getMessage());
+            }
+            
+        }else{
+            System.out.println("No hay turnos");
+        }
+        
         
     }
    
