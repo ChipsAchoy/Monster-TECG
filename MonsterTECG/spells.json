@@ -1,19 +1,18 @@
 {
     "spells":[
-        {"type":"freeze","damage":"0", "cost":"500"},
-        {"type":"freeze","damage":"0", "cost":"500"},
-        {"type":"heal","damage":"0", "cost":"400"},
-        {"type":"heal","damage":"0", "cost":"400"},
-        {"type":"steal","damage":"0", "cost":"500"},
-        {"type":"steal","damage":"0", "cost":"500"},
-        {"type":"electrocute","damage":"100", "cost":"600"},
-        {"type":"electrocute","damage":"100", "cost":"600"},
-        {"type":"fireball","damage":"200", "cost":"300"},
-        {"type":"wind","damage":"0", "cost":"350"},
-        {"type":"wind","damage":"0", "cost":"350"},
-        {"type":"crazy","damage":"0", "cost":"400"},
-        {"type":"crazy","damage":"0", "cost":"400"}
-        
+        {"type":"freeze","damage":"0", "cost":"400", "image":"cartas\\Hechizos\\Freeze.png"},
+        {"type":"freeze","damage":"0", "cost":"400", "image":"cartas\\Hechizos\\Freeze.png"},
+        {"type":"heal","damage":"0", "cost":"400", "image":"cartas\\Hechizos\\Heal.png"},
+        {"type":"heal","damage":"0", "cost":"400", "image":"cartas\\Hechizos\\Heal.png"},
+        {"type":"heal","damage":"0", "cost":"400", "image":"cartas\\Hechizos\\Heal.png"},
+        {"type":"electrocute","damage":"200", "cost":"500", "image":"cartas\\Hechizos\\Electrocute.png"},
+        {"type":"electrocute","damage":"200", "cost":"500", "image":"cartas\\Hechizos\\Electrocute.png"},
+        {"type":"fireball","damage":"300", "cost":"300", "image":"cartas\\Hechizos\\Fireball.png"},
+        {"type":"fireball","damage":"300", "cost":"300", "image":"cartas\\Hechizos\\Fireball.png"},
+        {"type":"wind","damage":"0", "cost":"350", "image":"cartas\\Hechizos\\Wind.png"},
+        {"type":"wind","damage":"0", "cost":"350", "image":"cartas\\Hechizos\\Wind.png"},
+        {"type":"crazy","damage":"0", "cost":"400", "image":"cartas\\Hechizos\\Crazy.png"},
+        {"type":"crazy","damage":"0", "cost":"400", "image":"cartas\\Hechizos\\Crazy.png"}
         
     ]
 }

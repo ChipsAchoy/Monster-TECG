@@ -12,18 +12,24 @@ import monsterTecg.Logics.PlayerManager;
 public class AppWindow extends JFrame {
 
     public AppWindow() {
+        //this.setLayout(null);
+        
+        setSize(800, 700);
+        
+        AppInterface interfaz = new AppInterface("Bg.png");
 
-        setBounds(600, 500, 300, 400);
-
-        AppInterface interfaz = new AppInterface();
-
-        PlayerManager pm = PlayerManager.getInstance(12003, interfaz);
+        PlayerManager pm = PlayerManager.getInstance(12003, interfaz, true);
         
         pm.setDeck();
         pm.setHand();
+        pm.selected = pm.getHand().getByIndex(0);
+        pm.selectedIndex = 0;
+        pm.updateCurrent();
 
         add(interfaz);
-
+        
+        setResizable(false);   
+        
         setVisible(true);
     }
 

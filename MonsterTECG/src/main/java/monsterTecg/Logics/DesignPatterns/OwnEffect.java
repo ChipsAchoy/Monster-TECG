@@ -16,7 +16,7 @@ public class OwnEffect {
     }
     
     public boolean hasOwnEffect(){
-        if ((this.type == "heal")/*||(this.type == "steal")*/){
+        if ((this.type.equals("heal"))/*||(this.type == "steal")*/){
             //Lanzar la carta que robo
             return true;
         }
@@ -26,8 +26,13 @@ public class OwnEffect {
     }
     
     public void Effect(){
+        //Condicional de si tiene vida maxima
+        if (PlayerManager.getInstance().getHealth() + 300 >= 1000){
+            PlayerManager.getInstance().setHealth(1000);
+        }else{
+            PlayerManager.getInstance().updateHealth(-300);
+        }
         
-        PlayerManager.getInstance().updateHealth(-200);
 
     }
 }

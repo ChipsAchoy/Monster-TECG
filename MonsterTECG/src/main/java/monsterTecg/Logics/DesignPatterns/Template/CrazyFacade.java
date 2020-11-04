@@ -1,5 +1,6 @@
 package monsterTecg.Logics.DesignPatterns.Template;
 
+import java.awt.event.ActionEvent;
 import java.util.Random;
 import monsterTecg.Logics.PlayerManager;
 
@@ -14,7 +15,8 @@ public class CrazyFacade extends FacadePerformer{
         Random rand = new Random();
         int rnd = rand.nextInt(PlayerManager.getInstance().getHand().getSize());
         PlayerManager.getInstance().selected = PlayerManager.getInstance().getHand().getByIndex(rnd);
-        PlayerManager.getInstance().setTurns(0);
+        ActionEvent e = null;
+        PlayerManager.getInstance().sendturn.actionPerformed(e);
     }
     
 }

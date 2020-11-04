@@ -1,5 +1,6 @@
 package monsterTecg.Logics.absDataTypes;
 
+import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.Turn;
 
 /**
@@ -22,16 +23,16 @@ public class DoubleLinkedList {
     
     /**
      * Agrega un nodo al final de la lista
-     * @param turn turno que sera asociado al nodo
+     * @param card carta que sera asociado al nodo
      */
-    public void addLast(Turn turn){
+    public void addLast(Card card){
         this.largo++;
         if (this.first == null){
-            this.first = new Node(turn);
+            this.first = new Node(card);
             this.last = this.first;
         }else{
             Node tmp = this.last;
-            this.last = new Node(turn);
+            this.last = new Node(card);
             tmp.setNext(this.last);
             this.last.setPrev(tmp);
         }
@@ -53,13 +54,13 @@ public class DoubleLinkedList {
      * @param index posicion en la lista
      * @return valor deseado (en este caso un turno)
      */
-    public Turn getByIndex(int index){
+    public Card getByIndex(int index){
         if((this.largo == 0)||(index >= this.largo)){
             return null;
         }
         
         else if (index == this.largo -1){
-            return this.last.getTurn();
+            return this.last.getData();
         }
         else{
             int position = 0;
@@ -71,7 +72,7 @@ public class DoubleLinkedList {
                 tmp = tmp.getNext();
                 position++;
             }
-            return tmp.getTurn();
+            return tmp.getData();
         }
     }
     

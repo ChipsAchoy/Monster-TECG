@@ -9,6 +9,7 @@ import monsterTecg.Logics.PlayerManager;
  */
 public abstract class FacadePerformer {
     protected Card card;
+    
     public void showCard(Card card){
         this.card = card;
         PlayerManager.getInstance().setTurns(1);

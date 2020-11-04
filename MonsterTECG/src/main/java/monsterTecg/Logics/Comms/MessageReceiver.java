@@ -45,18 +45,19 @@ public class MessageReceiver implements Runnable{
                     
                     Card response = json.readValue(cardrec, Card.class);
                     System.out.println(response.getType() + ","+response.getDmg());
-                    //TurnProcessor turn = new TurnProcessor(response);
-                    //turn.PerformFacade();
-                    //SendTurn st = new SendTurn(this.frame,socketIn.getInetAddress().toString(), socketIn.getPort());
-                    frame.chat_space.append("Turno Rival: " + response.getType()+ "\n");
-                    //socketIn.close();
+                    TurnProcessor turn = new TurnProcessor(response);
+                    turn.PerformFacade();
                     
-                    //cardrec.skip(Long.MAX_VALUE);
+                    this.frame.info1.setText("Es su turno");
+                    
+                    if (!response.getType().equals("Win")){
+                        this.frame.textArea.append("Turno Rival: " + "Tipo: "+ response.getType()+ "\nDaño: "+ Integer.toString(response.getDmg())+ "\nManá: "+ Integer.toString(response.getCost()) + "\n");
+                    }else{
+                        this.frame.textArea.append("Usted gana!");
+                        this.frame.info2.setText("Usted gana!");
+                    }
                     socketIn.close();
                 }   
-            /*}catch(BindException e){
-                this.portIn++;
-            */
             }catch(BindException e){
                 this.portIn++;
                 System.out.println(e);

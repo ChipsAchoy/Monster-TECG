@@ -1,18 +1,18 @@
 {
     
     "traps":[
-        {"type":"delete","damage":"0", "cost":"500"}, 
-        {"type":"delete","damage":"0", "cost":"500"}, 
-        {"type":"manacounter","damage":"0", "cost":"300"},
-        {"type":"manacounter","damage":"0", "cost":"300"},
-        {"type":"magic","damage":"0", "cost":"300"},
-        {"type":"magic","damage":"0", "cost":"300"},
-        {"type":"bleed","damage":"100", "cost":"600"},
-        {"type":"bleed","damage":"100", "cost":"600"},
-        {"type":"breaker","damage":"0", "cost":"500"},
-        {"type":"breaker","damage":"0", "cost":"500"},
-        {"type":"mix","damage":"0", "cost":"500"},
-        {"type":"mix","damage":"0", "cost":"500"},
-        {"type":"mix","damage":"0", "cost":"500"}
+        {"type":"delete","damage":"0", "cost":"500", "image":"cartas\\Trucos\\Delete.png"}, 
+        {"type":"delete","damage":"0", "cost":"500", "image":"cartas\\Trucos\\Delete.png"}, 
+        {"type":"manacounter","damage":"0", "cost":"600", "image":"cartas\\Trucos\\ManaCounter.png"},
+        {"type":"manacounter","damage":"0", "cost":"600", "image":"cartas\\Trucos\\ManaCounter.png"},
+        {"type":"magic","damage":"0", "cost":"300", "image":"cartas\\Trucos\\Magic.png"},
+        {"type":"magic","damage":"0", "cost":"300", "image":"cartas\\Trucos\\Magic.png"},
+        {"type":"bleed","damage":"300", "cost":"500", "image":"cartas\\Trucos\\Bleed.png"},
+        {"type":"bleed","damage":"300", "cost":"500", "image":"cartas\\Trucos\\Bleed.png"},
+        {"type":"breaker","damage":"0", "cost":"400", "image":"cartas\\Trucos\\Breaker.png"},
+        {"type":"breaker","damage":"0", "cost":"400", "image":"cartas\\Trucos\\Breaker.png"},
+        {"type":"mix","damage":"0", "cost":"300", "image":"cartas\\Trucos\\Mix.png"},
+        {"type":"mix","damage":"0", "cost":"300", "image":"cartas\\Trucos\\Mix.png"},
+        {"type":"mix","damage":"0", "cost":"300", "image":"cartas\\Trucos\\Mix.png"}
     ]
 }

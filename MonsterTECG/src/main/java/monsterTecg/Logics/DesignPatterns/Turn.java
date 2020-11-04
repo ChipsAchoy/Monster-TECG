@@ -30,7 +30,8 @@ public class Turn {
             own.Effect();
         }
         
-        if (PlayerManager.getInstance().getTurns()>0){
+        if (PlayerManager.getInstance().getTurns()>=0){
+            PlayerManager.getInstance().updateStats();
             ObjectMapper objectMapper = new ObjectMapper();
             String json = objectMapper.writeValueAsString(this.card);
             System.out.println(json);

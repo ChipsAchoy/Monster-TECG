@@ -42,19 +42,19 @@ public class DeckGenerator {
             
             for(int i=0; i<arrayminions.size(); i++){
                 JSONObject current = (JSONObject) arrayminions.get(i);
-                Card card = new Card(current.get("type").toString(), Integer.parseInt(current.get("damage").toString()), Integer.parseInt(current.get("cost").toString()));
+                Card card = new Card(current.get("type").toString(), Integer.parseInt(current.get("damage").toString()), Integer.parseInt(current.get("cost").toString()), current.get("image").toString());
                 minionsGen.addLast(card);
             }
             
             for(int i=0; i<arrayspells.size(); i++){
                 JSONObject current = (JSONObject) arrayspells.get(i);
-                Card card = new Card(current.get("type").toString(), Integer.parseInt(current.get("damage").toString()), Integer.parseInt(current.get("cost").toString()));
+                Card card = new Card(current.get("type").toString(), Integer.parseInt(current.get("damage").toString()), Integer.parseInt(current.get("cost").toString()), current.get("image").toString());
                 spellsGen.addLast(card);
             }
             
             for(int i=0; i<arraytraps.size(); i++){
                 JSONObject current = (JSONObject) arraytraps.get(i);
-                Card card = new Card(current.get("type").toString(), Integer.parseInt(current.get("damage").toString()), Integer.parseInt(current.get("cost").toString()));
+                Card card = new Card(current.get("type").toString(), Integer.parseInt(current.get("damage").toString()), Integer.parseInt(current.get("cost").toString()), current.get("image").toString());
                 trapsGen.addLast(card);
             }
             

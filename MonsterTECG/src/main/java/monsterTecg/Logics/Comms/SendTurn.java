@@ -3,8 +3,6 @@ package monsterTecg.Logics.Comms;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import monsterTecg.Interface.AppInterface;
 import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.Turn;
@@ -31,18 +29,36 @@ public class SendTurn implements ActionListener{
         
         PlayerManager pm = PlayerManager.getInstance();
         Card selected = pm.selected;
-        if (pm.alive()){
+        if (!pm.locked){
+            
             if (pm.getMana() - selected.getCost() >= 0){
+                PlayerManager.getInstance().locked = true;
                 Turn turn = new Turn(selected); //aca va la carta seleccionada
-                //this.unlockMoves
-                /*
-                if (selected.getType().equals("heal")){ //Se va a resumir en el OwnEffect
-                    this.health += 150;
+                
+                pm.playedTurns.addLast(selected);
+                
+                if (!selected.equals("Win")){
+                    this.frame.textArea.append("Turno jugado: " + "Tipo: "+ selected.getType()+ "\nDaño: "+ Integer.toString(selected.getDmg()) + "\nManá: "+ Integer.toString(selected.getCost()) +"\n");
+                }else{
+                    this.frame.textArea.append("Usted pierde");
                 }
-                */
-                frame.chat_space.append("Turno jugado: " + selected.getType() + "\n");
                 pm.updateMana(selected.getCost());
-
+                this.frame.info1.setText("Turno del rival");
+                if (!selected.getType().equals("None")){
+                    if (pm.getHand().getSize()-1 == 0){
+                        pm.getHandUpdate().deleteByIndex(pm.selectedIndex);
+                    }else{
+                        pm.getHand().deleteByIndex(pm.selectedIndex);
+                    }   
+                }
+                
+                pm.selected = pm.getHand().getByIndex(0);
+                pm.selectedIndex = 0;
+                pm.updateCurrent();
+                
+                //this.frame.listaCards.setListData(PlayerManager.getInstance().getHand().toArray());
+                
+                
                 try {
                     turn.SendJSON(this.ipRival, this.portRival);
                 } catch (JsonProcessingException ex) {
@@ -50,7 +66,7 @@ public class SendTurn implements ActionListener{
                 }
             }
             else{
-                System.out.println("No hay mana suficiente");
+                this.frame.info2.setText("No hay maná suficiente");
             }
         }
     }

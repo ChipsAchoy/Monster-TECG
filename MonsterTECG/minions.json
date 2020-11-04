@@ -1,19 +1,19 @@
 {
     "minions": [
-        {"type":"minion","damage":"50", "cost":"100"},
-        {"type":"minion","damage":"50", "cost":"100"},
-        {"type":"minion","damage":"50", "cost":"100"},
-        {"type":"minion","damage":"50", "cost":"100"},
-        {"type":"minion","damage":"50", "cost":"100"},
-        {"type":"minion","damage":"100", "cost":"150"},
-        {"type":"minion","damage":"100", "cost":"150"},
-        {"type":"minion","damage":"100", "cost":"150"},
-        {"type":"minion","damage":"100", "cost":"150"},
-        {"type":"minion","damage":"200", "cost":"250"},
-        {"type":"minion","damage":"200", "cost":"250"},
-        {"type":"minion","damage":"200", "cost":"250"},
-        {"type":"minion","damage":"300", "cost":"300"},
-        {"type":"minion","damage":"300", "cost":"300"}
+        {"type":"minion","damage":"50", "cost":"100", "image":"cartas\\Minions\\Minion1.png"},
+        {"type":"minion","damage":"50", "cost":"100", "image":"cartas\\Minions\\Minion1.png"},
+        {"type":"minion","damage":"50", "cost":"100", "image":"cartas\\Minions\\Minion1.png"},
+        {"type":"minion","damage":"50", "cost":"100", "image":"cartas\\Minions\\Minion1.png"},
+        {"type":"minion","damage":"50", "cost":"100", "image":"cartas\\Minions\\Minion1.png"},
+        {"type":"minion","damage":"100", "cost":"150", "image":"cartas\\Minions\\Minion2.png"},
+        {"type":"minion","damage":"100", "cost":"150", "image":"cartas\\Minions\\Minion2.png"},
+        {"type":"minion","damage":"100", "cost":"150", "image":"cartas\\Minions\\Minion2.png"},
+        {"type":"minion","damage":"100", "cost":"150", "image":"cartas\\Minions\\Minion2.png"},
+        {"type":"minion","damage":"200", "cost":"250", "image":"cartas\\Minions\\Minion3.png"},
+        {"type":"minion","damage":"200", "cost":"250", "image":"cartas\\Minions\\Minion3.png"},
+        {"type":"minion","damage":"200", "cost":"250", "image":"cartas\\Minions\\Minion3.png"},
+        {"type":"minion","damage":"300", "cost":"350", "image":"cartas\\Minions\\Minion4.png"},
+        {"type":"minion","damage":"300", "cost":"350", "image":"cartas\\Minions\\Minion4.png"}
         
     ]
     
