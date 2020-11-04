@@ -6,6 +6,7 @@ import monsterTecg.Logics.Comms.MessageReceiver;
 import monsterTecg.Logics.Comms.SendTurn;
 import javax.swing.ListSelectionModel;
 import monsterTecg.Interface.AppInterface;
+import monsterTecg.Interface.MenuWindow;
 import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.DeckGenerator;
 import monsterTecg.Logics.DesignPatterns.Turn;
@@ -38,9 +39,12 @@ public class PlayerManager {
     public int selectedIndex; 
     
     private static PlayerManager instance = null;
+    private MenuWindow mw;
     
-    private PlayerManager(int inPort, AppInterface frame, boolean lock){
+    private PlayerManager(int inPort, AppInterface frame, boolean lock, MenuWindow mw){
         this.frame = frame;
+        
+        this.mw = mw;
         
         this.inPort = inPort;
         
@@ -55,12 +59,6 @@ public class PlayerManager {
         GrabCard newone = new GrabCard(frame);
 
         this.frame.deck.addActionListener(newone);
-
-        SendTurn evento = new SendTurn(frame, ipSend, portSend);
-        
-        this.sendturn = evento;
-
-        this.frame.carta.addActionListener(evento);
 
         ListReact lr = new ListReact(frame);
 
@@ -82,10 +80,10 @@ public class PlayerManager {
         
     }
     
-    public static PlayerManager getInstance(int inPort, AppInterface frame, boolean lock){
+    public static PlayerManager getInstance(int inPort, AppInterface frame, boolean lock, MenuWindow mw){
         if (instance == null){
             
-            instance = new PlayerManager(inPort, frame, lock);
+            instance = new PlayerManager(inPort, frame, lock, mw);
             
             MessageReceiver messages = new MessageReceiver(inPort, frame);
         }
@@ -94,6 +92,17 @@ public class PlayerManager {
     
     public static PlayerManager getInstance(){
         return instance;
+    }
+    
+    public void initPort(){
+        
+        this.mw.dispose();
+        
+        SendTurn evento = new SendTurn(this.frame, this.ipSend, this.portSend);
+        
+        this.sendturn = evento;
+
+        this.frame.carta.addActionListener(evento);
     }
     
     public void setTurns(int turns){

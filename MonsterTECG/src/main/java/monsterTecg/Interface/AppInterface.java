@@ -62,7 +62,7 @@ public class AppInterface extends JPanel {
         info2.setForeground(Color.cyan);
         info2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         add(info2);
-        info2.setBounds(30,420,200, 50);
+        info2.setBounds(30,420,260,50);
         
         deckC = new JLabel("");
         deckC.setForeground(Color.cyan);

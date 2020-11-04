@@ -2,6 +2,7 @@ package monsterTecg;
 
 import javax.swing.JFrame;
 import monsterTecg.Interface.AppWindow;
+import monsterTecg.Interface.MenuWindow;
 import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.Turn;
 import monsterTecg.Logics.PlayerManager;
@@ -16,7 +17,9 @@ import monsterTecg.Logics.absDataTypes.Stack;
  */
 public class Main {
     public static void main(String[] args){
-        AppWindow window = new AppWindow();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        MenuWindow menu = new MenuWindow();
+        menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
 }

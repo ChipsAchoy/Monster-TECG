@@ -29,6 +29,8 @@ public class SendTurn implements ActionListener{
         
         PlayerManager pm = PlayerManager.getInstance();
         Card selected = pm.selected;
+        this.frame.info2.setText("");
+        
         if (!pm.locked){
             
             if (pm.getMana() - selected.getCost() >= 0){
@@ -37,10 +39,11 @@ public class SendTurn implements ActionListener{
                 
                 pm.playedTurns.addLast(selected);
                 
-                if (!selected.equals("Win")){
-                    this.frame.textArea.append("Turno jugado: " + "Tipo: "+ selected.getType()+ "\nDaño: "+ Integer.toString(selected.getDmg()) + "\nManá: "+ Integer.toString(selected.getCost()) +"\n");
+                if (!selected.getType().equals("Win")){
+                    this.frame.textArea.append("Turno jugado: \n" + "Tipo: "+ selected.getType()+ "\nDaño: "+ Integer.toString(selected.getDmg()) + "\nManá: "+ Integer.toString(selected.getCost()) +"\n\n");
                 }else{
                     this.frame.textArea.append("Usted pierde");
+                    this.frame.info2.setText("Usted pierde");
                 }
                 pm.updateMana(selected.getCost());
                 this.frame.info1.setText("Turno del rival");

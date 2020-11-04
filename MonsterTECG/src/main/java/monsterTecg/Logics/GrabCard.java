@@ -19,7 +19,7 @@ public class GrabCard implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (PlayerManager.getInstance().getHand().getSize()<10){
             PlayerManager.getInstance().deckSize -= 1;
-            this.frame.deckC.setText(PlayerManager.getInstance().deckSize);
+            this.frame.deckC.setText(Integer.toString(PlayerManager.getInstance().deckSize));
             PlayerManager.getInstance().getHandUpdate();
             PlayerManager pm = PlayerManager.getInstance();
             pm.selected = pm.getHand().getByIndex(pm.getHand().getSize()-1);

@@ -12,6 +12,7 @@ import java.net.Socket;
 import monsterTecg.Interface.AppInterface;
 import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.TurnProcessor;
+import monsterTecg.Logics.PlayerManager;
 
 /**
  *
@@ -32,7 +33,7 @@ public class MessageReceiver implements Runnable{
     
     @Override
     public void run() {
-        //while (true) { //Tries to connect to the first available port
+        while (true) { //Tries to connect to the first available port
             Socket socketIn = null;
             try {
                 ServerSocket servidor = new ServerSocket(this.portIn);
@@ -45,13 +46,27 @@ public class MessageReceiver implements Runnable{
                     
                     Card response = json.readValue(cardrec, Card.class);
                     System.out.println(response.getType() + ","+response.getDmg());
-                    TurnProcessor turn = new TurnProcessor(response);
-                    turn.PerformFacade();
                     
-                    this.frame.info1.setText("Es su turno");
+                    
+                    if (response.getType().equals("Start")){
+                        System.out.println("Recibido, abriendo puerto");
+                        PlayerManager.getInstance().ipSend = socketIn.getLocalAddress().toString().substring(1);
+                        
+                        PlayerManager.getInstance().portSend = 12004;
+                        System.out.println(PlayerManager.getInstance().portSend+PlayerManager.getInstance().ipSend);
+                        
+                        PlayerManager.getInstance().initPort();
+                    }else{
+                        TurnProcessor turn = new TurnProcessor(response);
+                        turn.PerformFacade();
+                    }
+                    
+                    if (!(response.getType().equals("freeze")||response.getType().equals("electrocute")||response.getType().equals("crazy"))){
+                        this.frame.info1.setText("Es su turno");
+                    }
                     
                     if (!response.getType().equals("Win")){
-                        this.frame.textArea.append("Turno Rival: " + "Tipo: "+ response.getType()+ "\nDaño: "+ Integer.toString(response.getDmg())+ "\nManá: "+ Integer.toString(response.getCost()) + "\n");
+                        this.frame.textArea.append("Turno Rival: \n" + "Tipo: "+ response.getType()+ "\nDaño: "+ Integer.toString(response.getDmg())+ "\nManá: "+ Integer.toString(response.getCost()) + "\n\n");
                     }else{
                         this.frame.textArea.append("Usted gana!");
                         this.frame.info2.setText("Usted gana!");
@@ -66,7 +81,7 @@ public class MessageReceiver implements Runnable{
                 System.out.println(e1);
             }
             
-        //}
+        }
     }
     
 }
