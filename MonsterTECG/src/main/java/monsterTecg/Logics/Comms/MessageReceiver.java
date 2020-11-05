@@ -37,6 +37,7 @@ public class MessageReceiver implements Runnable{
             Socket socketIn = null;
             try {
                 ServerSocket servidor = new ServerSocket(this.portIn);
+                PlayerManager.getInstance().inPort = this.portIn;
                 System.out.println(this.portIn);
                 ObjectMapper json = new ObjectMapper().configure(Feature.AUTO_CLOSE_SOURCE, false);
                 
@@ -52,7 +53,7 @@ public class MessageReceiver implements Runnable{
                         System.out.println("Recibido, abriendo puerto");
                         PlayerManager.getInstance().ipSend = socketIn.getLocalAddress().toString().substring(1);
                         
-                        PlayerManager.getInstance().portSend = 12004;
+                        PlayerManager.getInstance().portSend = response.getDmg();
                         System.out.println(PlayerManager.getInstance().portSend+PlayerManager.getInstance().ipSend);
                         
                         PlayerManager.getInstance().initPort();

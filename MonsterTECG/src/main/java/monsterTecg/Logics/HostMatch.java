@@ -24,7 +24,7 @@ public class HostMatch implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         AppWindow window = new AppWindow(false, "", 0, this.frame);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.panel.info.setText("Esperando en el puerto 12002");
+        this.panel.info.setText("Esperando en 127.0.0.1:"+Integer.toString(PlayerManager.getInstance().inPort));
     }
     
 }

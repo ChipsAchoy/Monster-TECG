@@ -17,6 +17,8 @@ import monsterTecg.Logics.absDataTypes.Stack;
 /**
  *
  * @author Anthony Chaves
+ * Implementacion de un singleton que maneja los distintos atributos del jugador
+ * Proporciona un acceso global
  */
 public class PlayerManager {
     
@@ -25,12 +27,12 @@ public class PlayerManager {
     private CircularList hand = new CircularList();
     private int health = 1000;
     private int availableTurns = 1;
-    private int inPort;
     public int deckSize = 16;
     public boolean locked;
     public DoubleLinkedList playedTurns = new DoubleLinkedList();
     private AppInterface frame;
     
+    public int inPort;
     public int portSend = 12002;
     public String ipSend = "127.0.0.1";
     public SendTurn sendturn;
@@ -38,9 +40,17 @@ public class PlayerManager {
     public Card selected;
     public int selectedIndex; 
     
+    //Instancia unica de la clase
     private static PlayerManager instance = null;
     private MenuWindow mw;
     
+    /**
+     * Constructor de la clase
+     * @param inPort puerto inicial de la busqueda
+     * @param frame interfaz del juego
+     * @param lock variable que indica el turno
+     * @param mw ventana del cliente
+     */
     private PlayerManager(int inPort, AppInterface frame, boolean lock, MenuWindow mw){
         this.frame = frame;
         
@@ -80,6 +90,14 @@ public class PlayerManager {
         
     }
     
+    /**
+     * Metodo estatico para obtener la instancia con sus atributos
+     * @param inPort puerto inicial de la busqueda
+     * @param frame interfaz del juego
+     * @param lock variable que indica el turno
+     * @param mw ventana del cliente
+     * @return la instancia unica de la clase
+     */
     public static PlayerManager getInstance(int inPort, AppInterface frame, boolean lock, MenuWindow mw){
         if (instance == null){
             
@@ -90,6 +108,10 @@ public class PlayerManager {
         return instance;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public static PlayerManager getInstance(){
         return instance;
     }

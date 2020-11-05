@@ -28,12 +28,11 @@ public class AppWindow extends JFrame {
         pm.updateCurrent();
         
         if (turn){
-            
             pm.ipSend = ip;
             pm.portSend = port;
             pm.initPort();
             pm.locked = false;
-            pm.selected = new Card("Start",0,0,"");
+            pm.selected = new Card("Start",pm.inPort,0,"");
             pm.sendturn.actionPerformed(null);
             pm.locked = true;
         }

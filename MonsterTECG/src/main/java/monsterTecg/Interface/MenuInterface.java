@@ -57,7 +57,7 @@ public class MenuInterface extends JPanel{
         info = new JLabel("");
         info.setForeground(Color.WHITE);
         add(info);
-        info.setBounds(140, 330, 200, 30);
+        info.setBounds(120, 320, 200, 60);
         
         Connect con = new Connect(this, mw);
         connect.addActionListener(con);
