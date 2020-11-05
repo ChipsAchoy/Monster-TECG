@@ -8,23 +8,28 @@ import java.net.Socket;
 import monsterTecg.Logics.PlayerManager;
 
 /**
- *
+ * Clase para enviar un turno al otro jugador
  * @author Anthony Chaves
  */
 public class Turn {
     
     private Card card;
     
+    /**
+     * Constructor de la clase
+     * @param card carta que será enviada
+     */
     public Turn(Card card){
         this.card = card;
     }
     
-    
+    /**
+     * Envia un JSON al otro jugador
+     * @param ip dirección ip a la que se envía la carta
+     * @param port ´puerto al que se envía la carta
+     * @throws JsonProcessingException 
+     */
     public void SendJSON(String ip, int port) throws JsonProcessingException{
-        /**
-         * https://www.baeldung.com/jackson-object-mapper-tutorial
-         * http://tutorials.jenkov.com/java-json/jackson-objectmapper.html
-         */
         OwnEffect own = new OwnEffect(this.card.getType());
         if (own.hasOwnEffect()){
             own.Effect();

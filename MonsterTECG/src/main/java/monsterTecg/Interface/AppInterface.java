@@ -23,13 +23,13 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
- * AppInterface defines the attributes that will be seen on the run time Graphic Interface
+ * Define los elementos graficos que se veran en la interfaz de juego
  *
  */
 public class AppInterface extends JPanel {
     /**
-     * Class Constructor
-     * 
+     * Constructor de la clase
+     * @param fileName ruta del fondo de pantalla
      */
     public AppInterface(String fileName) {
         
@@ -112,6 +112,11 @@ public class AppInterface extends JPanel {
         
     }
     
+    /**
+     * Override del metodo de la superclase para colocar un fondo
+     * @param g elemento grafico
+     */
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 

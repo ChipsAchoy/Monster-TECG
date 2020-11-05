@@ -5,11 +5,14 @@ import java.util.Random;
 import monsterTecg.Logics.PlayerManager;
 
 /**
- *
+ * Implementación de un caso particular para la carta crazy
  * @author Anthony Chaves
  */
 public class CrazyFacade extends FacadePerformer{
-
+    /**
+     * Facade que realiza los cambios en el jugador
+     * @param dmg daño de la carta
+     */
     @Override
     public void makeChanges(int dmg) {
         Random rand = new Random();

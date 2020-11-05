@@ -3,7 +3,7 @@ package monsterTecg.Logics.absDataTypes;
 import monsterTecg.Logics.DesignPatterns.Card;
 
 /**
- *
+ * Implementacion de una lista circular doblemente enlazada
  * @author Anthony Chaves
  */
 public class CircularList {
@@ -116,7 +116,10 @@ public class CircularList {
             this.largo --;
         }
     }
-    
+    /**
+     * Convierte una lista ciruclar en un array
+     * @return 
+     */
     public Card[] toArray(){
         Card[] array = new Card[this.largo];
         Node tmp = this.last.getNext();

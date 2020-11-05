@@ -15,7 +15,7 @@ import monsterTecg.Logics.DesignPatterns.TurnProcessor;
 import monsterTecg.Logics.PlayerManager;
 
 /**
- *
+ * Clase que permite correr un hilo para recibir mensajes
  * @author Anthony Chaves Achoy
  */
 public class MessageReceiver implements Runnable{
@@ -23,6 +23,11 @@ public class MessageReceiver implements Runnable{
     private int portIn;
     private AppInterface frame;
     
+    /**
+     * Constructor de la clase
+     * @param portIn puerto en el que se recibe
+     * @param frame interfaz de juego
+     */
     public MessageReceiver(int portIn, AppInterface frame){
         this.frame = frame;
         this.portIn = portIn;
@@ -31,6 +36,9 @@ public class MessageReceiver implements Runnable{
         th.start();
     }
     
+    /**
+     * Metodo asociado al thread que espera por mensajes
+     */
     @Override
     public void run() {
         while (true) { //Tries to connect to the first available port

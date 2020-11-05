@@ -4,7 +4,7 @@ import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.Turn;
 
 /**
- *
+ * Implementacion el nodo que utilizan las otras estructuras
  * @author Anthony Chaves
  */
 public class Node {

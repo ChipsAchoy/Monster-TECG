@@ -14,11 +14,15 @@ import monsterTecg.Logics.Connect;
 import monsterTecg.Logics.HostMatch;
 
 /**
- *
+ * Interfaz grafica para el cliente del juego
  * @author Anthony Chaves
  */
 public class MenuInterface extends JPanel{
-    
+    /**
+     * Constructor de la clase
+     * @param fileName ruta del fondo de pantalla
+     * @param mw ventana del cliente
+     */
     public MenuInterface(String fileName, MenuWindow mw) {
         
         this.setLayout(null);

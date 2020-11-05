@@ -5,16 +5,24 @@ import java.awt.event.ActionListener;
 import monsterTecg.Interface.AppInterface;
 
 /**
- *
+ * ActionListener del boton para agarrar una carta
  * @author Anthony Chaves
  */
 public class GrabCard implements ActionListener {
     private AppInterface frame;
     
+    /**
+     * Constructor de la clase
+     * @param frame interfaz de juego
+     */
     public GrabCard(AppInterface frame){
         this.frame = frame;
     }
     
+    /**
+     * Actualiza la mano de cartas tomando una del deck
+     * @param e evento
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if ((PlayerManager.getInstance().getHand().getSize()<10)&&(PlayerManager.getInstance().deckSize > 0)){

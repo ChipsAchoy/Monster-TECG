@@ -6,12 +6,18 @@ import monsterTecg.Logics.PlayerManager;
 
 /**
  * 
- * AppWindow defines the size of the display window and calls the GUI managment class
+ * Define el tamaño de la pantalla y crea una instancia para un jugador
  * 
  */
 
 public class AppWindow extends JFrame {
-
+    /**
+     * Constructor de la clase
+     * @param turn inidicador de turno inicial
+     * @param ip direccion ip del jugador
+     * @param port puerto inicial para el jugador
+     * @param mw ventana del cliente
+     */
     public AppWindow(boolean turn, String ip, int port, MenuWindow mw) {
         //this.setLayout(null);
         

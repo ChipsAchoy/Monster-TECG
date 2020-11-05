@@ -19,7 +19,7 @@ import monsterTecg.Logics.PlayerManager;
 import org.json.simple.parser.JSONParser;
 
 /**
- *
+ * Clase que permite procesar los turnos del rival
  * @author Anthony Chaves
  */
 public class TurnProcessor {
@@ -29,14 +29,24 @@ public class TurnProcessor {
     private int dmg;
     private Card card;
     
+    /**
+     * Constructor de la clase
+     * @param card carta recibida
+     */
     public TurnProcessor(Card card){
         this.card = card;
     }
     
+    /**
+     * Lee el JSON asociado
+     */
     private void readJSON(){
         JSONParser parser = new JSONParser();
     }
     
+    /**
+     * Hace la llamada a un facade para realizar las operaciones relacionadas a cada tipo de carta
+     */
     public void PerformFacade(){
         //this.readJSON();
         PlayerManager.getInstance().locked = false;
@@ -46,6 +56,7 @@ public class TurnProcessor {
         
         PlayerManager.getInstance().playedTurns.addLast(this.card);
         
+        //Llamada a los distintos facades basandose en el template method
         
         FacadePerformer facade = null;
         if ((this.type.equals("minion"))||(this.type.equals("fireball"))){

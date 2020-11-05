@@ -4,7 +4,7 @@ import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.DesignPatterns.Turn;
 
 /**
- *
+ * Implementacion de una lista doblemente enlazada
  * @author Anthony Chaves
  */
 public class DoubleLinkedList {

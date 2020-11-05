@@ -9,7 +9,7 @@ import org.json.simple.parser.JSONParser;
 import java.util.Random; 
 
 /**
- *
+ * Generador de decks aleatorios para cada jugador
  * @author Anthony Chaves
  */
 public class DeckGenerator {
@@ -19,6 +19,9 @@ public class DeckGenerator {
     private CircularList spellsGen = new CircularList();
     private CircularList trapsGen = new CircularList(); 
     
+    /**
+     * Constructor de la clase
+     */
     public DeckGenerator(){
         
         JSONParser parser = new JSONParser();
@@ -65,7 +68,10 @@ public class DeckGenerator {
         
     }
     
-
+    /**
+     * Genera una pila de cartas aleatorias
+     * @return Una pila con las cartas del jugador
+     */
     public Stack playerDeck(){
         //Idea
         //Tomar un valor random de las listas de arriba

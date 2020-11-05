@@ -3,7 +3,7 @@ package monsterTecg.Logics.absDataTypes;
 import monsterTecg.Logics.DesignPatterns.Card;
 
 /**
- *
+ * Implementacion de una pila
  * @author Anthony Chaves
  */
 public class Stack {

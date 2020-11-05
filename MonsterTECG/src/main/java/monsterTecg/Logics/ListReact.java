@@ -6,16 +6,25 @@ import monsterTecg.Interface.AppInterface;
 import monsterTecg.Logics.DesignPatterns.Card;
 
 /**
- *
+ * Listener para la JList de la interfaz
  * @author Anthony Chaves
  */
 public class ListReact implements ListSelectionListener{
     private AppInterface frame;
     public int currentIndex;
+    
+    /**
+     * Constructor de la clase
+     * @param frame interfaz de juego
+     */
     public ListReact(AppInterface frame){
         this.frame = frame;
     }
     
+    /**
+     * Metodo que actua al cambiar la lista 
+     * @param e evento
+     */
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if (!this.frame.listaCards.isSelectionEmpty()) {

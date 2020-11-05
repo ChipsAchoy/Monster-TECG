@@ -1,5 +1,6 @@
 package monsterTecg.Logics;
 
+import monsterTecg.Logics.Comms.SendNone;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import monsterTecg.Logics.Comms.MessageReceiver;
@@ -109,13 +110,16 @@ public class PlayerManager {
     }
     
     /**
-     * 
-     * @return 
+     * Metodo para retornar la instancia una vez creada
+     * @return instancia unica de la clase
      */
     public static PlayerManager getInstance(){
         return instance;
     }
     
+    /**
+     * Inicializa el puerto de envio
+     */
     public void initPort(){
         
         this.mw.dispose();
@@ -127,10 +131,18 @@ public class PlayerManager {
         this.frame.carta.addActionListener(evento);
     }
     
+    /**
+     * Set de la cantidad de turnos restantes
+     * @param turns numero de turnos
+     */
     public void setTurns(int turns){
         this.availableTurns = turns;
     }
     
+    /**
+     * Actualiza el mana
+     * @param cost mana gastado
+     */
     public void updateMana(int cost){
         this.mana -= cost;
         this.mana += 250;
@@ -139,16 +151,25 @@ public class PlayerManager {
         }
     }
     
+    /**
+     * Actualiza el mana y la vida en la interfaz
+     */
     public void updateStats(){
         this.frame.hp.setText("HP: "+Integer.toString(this.health));
         this.frame.mana.setText("Mana: "+Integer.toString(this.mana));
     }
     
+    /**
+     * Actualiza la carta seleccionada en la interfaz
+     */
     public void updateCurrent(){
         this.frame.icon = new ImageIcon(this.selected.getImg());
         this.frame.carta.setIcon(this.frame.icon);
     }
     
+    /**
+     * Genera el deck aleatorio del jugador
+     */
     public void setDeck(){
         DeckGenerator playerDeck = new DeckGenerator();
         this.deck = playerDeck.playerDeck();
@@ -156,6 +177,9 @@ public class PlayerManager {
         this.frame.deckC.setText(Integer.toString(this.deckSize));
     }
     
+    /**
+     * Toma cartas del deck a la mano del jugador
+     */
     public void setHand(){
         for(int i=0; i<4; i++){
             this.hand.addLast(deck.pop());
@@ -166,39 +190,74 @@ public class PlayerManager {
         this.frame.listaCards.setListData(this.hand.toArray());
     }
     
+    /**
+     * Devuelve la baraja del jugador
+     * @return una pila de cartas
+     */
     public Stack getDeck(){
         return this.deck;
     }
     
+    /**
+     * Devuelve las cartas en mano
+     * @return cartas que el jugador tiene mano
+     */
     public CircularList getHand(){
         return this.hand;
     }
     
+    /**
+     * Agrega una carta de la baraja a la mano del jugador
+     * @return Devuelve la mano actualizada
+     */
     public CircularList getHandUpdate(){
         this.hand.addLast(this.deck.pop());
         return this.hand;
     }
     
+    /**
+     * Retorna la vida del jugador
+     * @return numero de puntos de salud
+     */
     public int getHealth(){
         return this.health;
     }
     
+    /**
+     * Set de la vida del jugador
+     * @param hp valor numerico de vida
+     */
     public void setHealth(int hp){
         this.health = hp;
     }
     
+    /**
+     * Actualiza la vida segun un daño
+     * @param dmgDone daño realizado
+     */
     public void updateHealth(int dmgDone){
         this.health -= dmgDone;
     }
     
+    /**
+     * Devuelve los turnos disponibles
+     * @return numero de turnos
+     */
     public int getTurns(){
         return this.availableTurns;
     }
     
+    /**
+     * Devuelve el mana del jugador
+     * @return mana disponible 
+     */
     public int getMana(){
         return this.mana;
     }
     
+    /**
+     * Acaba la partida al perder
+     */
     public void gameOver(){
         
         System.out.println("You lost");
@@ -209,10 +268,17 @@ public class PlayerManager {
         this.locked = true;
     }
     
+    /**
+     * Evita que el jugador pueda hacer mas movimientos
+     */
     public void Winner(){
         this.locked = true;
     }
     
+    /**
+     * Confirma si el jugador sigue vivo
+     * @return boolean que indica si el jugador sigue vivo
+     */
     public boolean alive(){
         return this.health > 0;
     }

@@ -3,11 +3,14 @@ package monsterTecg.Logics.DesignPatterns.Template;
 import monsterTecg.Logics.PlayerManager;
 
 /**
- *
+ * Implementación de un caso particular para la carta wind
  * @author Anthony Chaves
  */
 public class WindFacade extends FacadePerformer{
-
+    /**
+     * Facade que realiza los cambios en el jugador
+     * @param dmg daño de la carta
+     */
     @Override
     public void makeChanges(int dmg) {
         if (PlayerManager.getInstance().getHand().getSize() - 1 > 0){
