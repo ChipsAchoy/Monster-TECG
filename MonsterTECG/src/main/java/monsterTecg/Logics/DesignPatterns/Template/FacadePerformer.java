@@ -4,7 +4,7 @@ import monsterTecg.Logics.DesignPatterns.Card;
 import monsterTecg.Logics.PlayerManager;
 
 /**
- * Implementación de un factory method que permite heredar a otros facades
+ * Implementación de un template method que permite heredar a otros facades
  * @author Anthony Chaves
  */
 public abstract class FacadePerformer {
